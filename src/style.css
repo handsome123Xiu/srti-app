@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f5f5f0; /* 全局宣纸底色 */
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s ease;
+}
