@@ -4,12 +4,12 @@
     <div v-if="state === 'start'" class="max-w-2xl w-full text-center space-y-12 animate-fade-in">
       <div class="space-y-4">
         <h1 class="text-4xl md:text-5xl font-bold tracking-widest text-ink-black">十日终焉</h1>
-        <p class="text-xl md:text-2xl tracking-widest text-ink-gray">轮回性格测试 (SRTI)</p>
+        <p class="text-xl md:text-2xl tracking-widest text-ink-gray">轮回性格测试 (SRTI) · 终极版</p>
       </div>
       <p class="text-md md:text-lg text-ink-gray leading-relaxed max-w-lg mx-auto">
-        在这个充满谎言、杀戮与规则的轮回世界里，<br>
+        已有 19 位轮回者入局，<br>
         剥去现世的伪装，你究竟会觉醒怎样的回响？<br>
-        完成 20 个生死抉择，寻找你灵魂最深处的阵营。
+        完成 20 个生死抉择，寻找你灵魂最深处的双重倒影。
       </p>
       <button @click="startTest" class="px-8 py-3 border border-ink-black text-ink-black hover:bg-ink-black hover:text-rice-paper transition-all duration-300 tracking-widest">
         入局
@@ -88,7 +88,7 @@ const currentQuestionIndex = ref(0)
 const userScores = ref([0, 0, 0, 0])
 const topMatches = ref([])
 
-// 角色库：根据新要求，大幅调整了地虎的坐标：共情(8), 守序(-8), 随机(8), 独狼(-8)
+// 角色库 (19人完整版)
 const characters = [
   { name: '齐夏', coords: [-10, 9, -10, -8], desc: '从悲伤中觉醒**灵闻**，于心安处**生生不息**。你终将选择背负一切，骗过天道，孤独地走向终局。' },
   { name: '楚天秋', coords: [-8, -9, -8, 9], desc: '见证终焉，化身**癫人**。为了虚假世界里的真理，哪怕吞噬同伴的眼球，也要建立绝对的天堂。' },
@@ -103,10 +103,16 @@ const characters = [
   { name: '江若雪', coords: [9, 1, -5, -6], desc: '清冷孤傲，执掌**因果**。你深信符合逻辑之事必将发生，用长线布局在命运的棋盘上落子无悔。' },
   { name: '钱五', coords: [4, -9, -6, 10], desc: '一花绽双花放，觉醒**双生花**只为保留抗争的火种。你是庇护所有人的老大哥，死亦不悔。' },
   { name: '地虎', coords: [8, -8, 8, -8], desc: '披着强硬的外壳，内心却有着致命的**柔软**与极高的共情。在严酷的秩序下，你习惯独自凭直觉抗下一切。' },
-  { name: '地鼠', coords: [-3, 10, 8, -5], desc: '外表逢迎讨好，实则死咬着崇高的**理想**。为了最终的目标，你愿意卑微到尘埃里，在规则边缘隐忍蛰伏。' }
+  { name: '地鼠', coords: [-3, 10, 8, -5], desc: '外表逢迎讨好，实则死咬着崇高的**理想**。为了最终的目标，你愿意卑微到尘埃里，在规则边缘隐忍蛰伏。' },
+  // 新加入的高人气角色
+  { name: '李尚武', coords: [-4, -5, 7, -6], desc: '彻底放下心中的执念，从虚无中**探囊**取物。你是极致纯粹的武者，哪怕深陷绝境，也要用双拳在这虚假的世界里打出真实的裂痕。' },
+  { name: '云瑶', coords: [9, 9, 10, 7], desc: '于求而不得的绝境中觉醒**强运**。你相信奇迹与羁绊，凭着无可比拟的直觉，让整个世界的概率都为你倾斜。' },
+  { name: '燕知春', coords: [-9, -9, -9, -7], desc: '试图掌控一切反对者，以霸道之音**夺心魄**。你是极道之王，用绝对的掌控欲编织无形的提线，让万物都在你的谋划中起舞。' },
+  { name: '宋七', coords: [4, 9, 8, 3], desc: '在生死一线的狂热中引燃**爆燃**。你是行走的炸药桶，用最纯粹的怒火与破坏力，粉碎一切挡在面前的虚伪法则。' },
+  { name: '罗十一', coords: [-7, -3, 4, -8], desc: '在无尽的挫败与绝望中选择**忘忧**。你切断了痛苦的感知，化作最坚忍的孤狼，在鲜血与伤痕中麻木却坚定地前行。' }
 ]
 
-// 题库数据：优化了话术，使极端选项听起来更具高智商、策略性与合理性
+// 优化后的 20 道题
 const questions = [
   {
     text: "【小说设定】绝境中，一名与你并肩作战的队友不慎触发了隐藏的“必死规则”。如果放任不管，他失控后会触发机关团灭所有人。但他目前还有 10% 的几率能清醒过来，你会：",
@@ -193,7 +199,7 @@ const questions = [
     text: "【小说设定】你获得了一件可以欺骗“世界系统”的道具，但使用它意味着你彻底站到了现有生存秩序的对立面，你会：",
     options: [
       { text: "A. 暂时封存。在没有绝对把握前，不轻易打破现有的生存平衡态。", effect: [0, -2, 0, 0] },
-      { text: "B. 制定极其详尽的沙盘推演，分阶段去测试系统容错的临界值。", effect: [0, -1, 0, 0] },
+      { text: "B. 制定极其详尽的沙盘推演，分阶段去测试系统的承受极限。", effect: [0, -1, 0, 0] },
       { text: "C. 意识到常规路径无法触及真相，果断选择这种离经叛道的方式破局。", effect: [0, 1, 0, 0] },
       { text: "D. 所谓的“天道”本身就是巨大的谎言，欺骗它就是最高的正义。", effect: [0, 2, 0, 0] }
     ]
@@ -314,29 +320,17 @@ const handleAnswer = (effect) => {
 }
 
 const calculateResult = () => {
-  // 计算最大可能距离，确保百分比基准准确
   const maxDistance = 40
-
   let results = characters.map((char) => {
     let distanceSq = 0
     for (let i = 0; i < 4; i++) {
       distanceSq += Math.pow(userScores.value[i] - char.coords[i], 2)
     }
     let distance = Math.sqrt(distanceSq)
-    
-    // 转换为百分比契合度
     let matchRate = Math.max(0, ((1 - distance / maxDistance) * 100)).toFixed(1)
-    
-    return {
-      ...char,
-      matchRate: matchRate
-    }
+    return { ...char, matchRate }
   })
-
-  // 按契合度降序排列
   results.sort((a, b) => b.matchRate - a.matchRate)
-
-  // 提取前两名（主次人格）
   topMatches.value = results.slice(0, 2)
   state.value = 'result'
 }
@@ -350,15 +344,8 @@ const resetTest = () => {
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
