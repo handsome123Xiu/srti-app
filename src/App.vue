@@ -7,8 +7,9 @@
         <p class="text-xl md:text-2xl tracking-widest text-ink-gray">轮回性格测试 (SRTI)</p>
       </div>
       <p class="text-md md:text-lg text-ink-gray leading-relaxed max-w-lg mx-auto">
+        在这个充满谎言、杀戮与规则的轮回世界里，<br>
         剥去现世的伪装，你究竟会觉醒怎样的回响？<br>
-        完成 20 个生死抉择，寻找你灵魂最深处的双重倒影。
+        完成 20 个生死抉择，寻找你灵魂最深处的阵营。
       </p>
       <button @click="startTest" class="px-8 py-3 border border-ink-black text-ink-black hover:bg-ink-black hover:text-rice-paper transition-all duration-300 tracking-widest">
         入局
