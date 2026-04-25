@@ -4,10 +4,9 @@
     <div v-if="state === 'start'" class="max-w-2xl w-full text-center space-y-12 animate-fade-in">
       <div class="space-y-4">
         <h1 class="text-4xl md:text-5xl font-bold tracking-widest text-ink-black">十日终焉</h1>
-        <p class="text-xl md:text-2xl tracking-widest text-ink-gray">轮回性格测试 (SRTI) · 终极版</p>
+        <p class="text-xl md:text-2xl tracking-widest text-ink-gray">轮回性格测试 (SRTI)</p>
       </div>
       <p class="text-md md:text-lg text-ink-gray leading-relaxed max-w-lg mx-auto">
-        已有 19 位轮回者入局，<br>
         剥去现世的伪装，你究竟会觉醒怎样的回响？<br>
         完成 20 个生死抉择，寻找你灵魂最深处的双重倒影。
       </p>
